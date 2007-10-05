@@ -14,6 +14,11 @@
 
 
 // TODO: reference additional headers your program requires here
+#include <windows.h>
+#include <time.h>
+#include <tchar.h>
+
+#include <string>
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
