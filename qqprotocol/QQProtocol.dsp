@@ -85,6 +85,10 @@ LIB32=link.exe -lib
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\Crypter.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\md5.cpp
 # End Source File
 # Begin Source File
@@ -104,6 +108,10 @@ SOURCE=.\StdAfx.cpp
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=.\Crypter.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\md5.h
