@@ -89,7 +89,15 @@ SOURCE=.\Crypter.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\InPacket.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\md5.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\OutPacket.cpp
 # End Source File
 # Begin Source File
 
@@ -114,7 +122,15 @@ SOURCE=.\Crypter.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\InPacket.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\md5.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\OutPacket.h
 # End Source File
 # Begin Source File
 
