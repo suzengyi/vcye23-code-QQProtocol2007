@@ -1,5 +1,5 @@
 //*************************************************************************
-// BasicFamilyParser.cpp: implementation of the CBasicFamilyParser class.
+// RequestLoginTokenReplyPacket.cpp: implementation of the CRequestLoginTokenReplyPacket class.
 // Version : 1.000
 // Date : July 2007
 // Author : Ye Feng
@@ -22,65 +22,48 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "BasicFamilyParser.h"
-#include "QQ.h"
-
 #include "RequestLoginTokenReplyPacket.h"
 
-#include "RequestLoginTokenPacket.h"
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CBasicFamilyParser::CBasicFamilyParser()
+CRequestLoginTokenReplyPacket::CRequestLoginTokenReplyPacket(CQQUser *pQQUser) :
+	CBasicInPacket(QQ.QQ_CMD_REQUEST_LOGIN_TOKEN, pQQUser)
 {
 
 }
 
-CBasicFamilyParser::~CBasicFamilyParser()
+CRequestLoginTokenReplyPacket::~CRequestLoginTokenReplyPacket()
 {
 
 }
 
-CBasicInPacket* CBasicFamilyParser::ParseInPacket(BYTE *pbBuf, size_t iBufLen, CQQUser *pQQUser) const
+bool CRequestLoginTokenReplyPacket::ParseBody(BYTE *pbBuf, size_t iBufLen)
 {
-	CBasicInPacket* pBasicInPacket = NULL;
-	short sCommand = GetCommand(pbBuf, iBufLen, pQQUser);
+	// »Ø¸´Âë
+	BYTE bReplyCode;
 
-	if( sCommand == QQ.QQ_CMD_REQUEST_LOGIN_TOKEN )
+	GET_BYTE(pbBuf, iBufLen, bReplyCode);
+	if( bReplyCode == QQ.QQ_REPLY_OK )
 	{
-		pBasicInPacket = new CRequestLoginTokenReplyPacket(pQQUser);
+		// µÇÂ¼ÁîÅÆ³¤¶È
+		GET_BYTE(pbBuf, iBufLen, m_pQQUser->m_iLoginTokenLen);
+
+		// µÇÂ¼ÁîÅÆ
+		SAFE_FREE(m_pQQUser->m_pbLoginToken);
+		m_pQQUser->m_pbLoginToken = (BYTE*)malloc(m_pQQUser->m_iLoginTokenLen);
+		GET_BYTES(pbBuf, iBufLen, m_pQQUser->m_pbLoginToken, m_pQQUser->m_iLoginTokenLen);
 	}
-	if( pBasicInPacket != NULL )
-	{
-		if( pBasicInPacket->ParseBuffer(pbBuf, iBufLen) )
-			return pBasicInPacket;
-		SAFE_DELETE(pBasicInPacket);
-	}
-	return NULL;
+	return true;
 
 }
 
-CBasicOutPacket* CBasicFamilyParser::CreateOutPacket(short sCommand, CQQUser *pQQUser) const
+size_t CRequestLoginTokenReplyPacket::DecryptBody(BYTE *pbBuf, size_t iBufLen, BYTE *pbBody, size_t iBodyLen) const
 {
-	if( sCommand == QQ.QQ_CMD_REQUEST_LOGIN_TOKEN )
-	{
-		return new CRequestLoginTokenPacket(pQQUser);
-	}
-	return NULL;
-
-}
-
-short CBasicFamilyParser::GetCommand(BYTE *pbBuf, size_t iBufLen, CQQUser *pQQUser) const
-{
-	if( !pQQUser->IsUDP() )
-		OFFSET_BYTES(pbBuf, iBufLen, 5)
-	else
-		OFFSET_BYTES(pbBuf, iBufLen, 3)
-
-	short sCommand;
-
-	GET_WORD(pbBuf, iBufLen, sCommand);
-	return sCommand;
+	if( iBodyLen < iBufLen )
+		return -1;
+	memcpy(pbBody, pbBuf, iBufLen);
+	return iBufLen;
 
 }

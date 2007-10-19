@@ -121,6 +121,14 @@ SOURCE=.\QQUser.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\RequestLoginTokenPacket.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\RequestLoginTokenReplyPacket.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\StdAfx.cpp
 # ADD CPP /Yc"stdafx.h"
 # End Source File
@@ -163,6 +171,14 @@ SOURCE=.\QQ.H
 # Begin Source File
 
 SOURCE=.\QQUser.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\RequestLoginTokenPacket.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\RequestLoginTokenReplyPacket.h
 # End Source File
 # Begin Source File
 

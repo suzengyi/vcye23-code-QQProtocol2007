@@ -29,6 +29,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+class CRequestLoginTokenReplyPacket;
 #define SAFE_FREE(p)	\
 if( p != NULL )	\
 {	\
@@ -46,6 +47,8 @@ if( p != NULL )	\
 class CQQUser  
 {
 public:
+	friend class CRequestLoginTokenReplyPacket;
+
 	CQQUser(int iQQNum, LPCTSTR lpszPassword);
 	virtual ~CQQUser();
 
