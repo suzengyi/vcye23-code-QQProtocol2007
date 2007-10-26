@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "demo.h"
 #include "../QQProtocol/QQUser.h"
-#include "../QQProtocol/QQClient.h"
+#include "DemoQQClient.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -45,7 +45,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		CString strPassword(argv[2]);
 		int iQQNum = _ttoi(strQQNum);
 		CQQUser* pQQUser = new CQQUser(iQQNum, strPassword);
-		CQQClient QQClient;
+		CDemoQQClient QQClient;
 
 		char szServerIP[] = "219.133.49.171";
 		DWORD dwServerIP = inet_addr(szServerIP);
@@ -57,8 +57,10 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		QQClient.SetQQUser(pQQUser);
 		if( QQClient.Login() < 0 )
 		{
+			return -1;
 		}
 		Sleep(10 * 60 * 1000);
+		delete pQQUser;
 	}
 
 	return nRetCode;
