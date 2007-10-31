@@ -26,8 +26,10 @@
 #include "QQ.h"
 
 #include "RequestLoginTokenReplyPacket.h"
+#include "LoginReplyPacket.h"
 
 #include "RequestLoginTokenPacket.h"
+#include "LoginPacket.h"
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -51,6 +53,10 @@ CBasicInPacket* CBasicFamilyParser::ParseInPacket(BYTE *pbBuf, size_t iBufLen, C
 	{
 		pBasicInPacket = new CRequestLoginTokenReplyPacket(pQQUser);
 	}
+	else if( sCommand == QQ.QQ_CMD_LOGIN )
+	{
+		pBasicInPacket = new CLoginReplyPacket(pQQUser);
+	}
 	if( pBasicInPacket != NULL )
 	{
 		if( pBasicInPacket->ParseBuffer(pbBuf, iBufLen) )
@@ -66,6 +72,10 @@ CBasicOutPacket* CBasicFamilyParser::CreateOutPacket(short sCommand, CQQUser *pQ
 	if( sCommand == QQ.QQ_CMD_REQUEST_LOGIN_TOKEN )
 	{
 		return new CRequestLoginTokenPacket(pQQUser);
+	}
+	else if( sCommand == QQ.QQ_CMD_LOGIN )
+	{
+		return new CLoginPacket(pQQUser);
 	}
 	return NULL;
 

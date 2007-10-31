@@ -105,6 +105,14 @@ SOURCE=.\InPacket.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\LoginPacket.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\LoginReplyPacket.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\md5.cpp
 # End Source File
 # Begin Source File
@@ -114,6 +122,10 @@ SOURCE=.\OutPacket.cpp
 # Begin Source File
 
 SOURCE=.\QQ.CPP
+# End Source File
+# Begin Source File
+
+SOURCE=.\QQClient.cpp
 # End Source File
 # Begin Source File
 
@@ -158,6 +170,14 @@ SOURCE=.\InPacket.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\LoginPacket.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\LoginReplyPacket.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\md5.h
 # End Source File
 # Begin Source File
@@ -167,6 +187,10 @@ SOURCE=.\OutPacket.h
 # Begin Source File
 
 SOURCE=.\QQ.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\QQClient.h
 # End Source File
 # Begin Source File
 

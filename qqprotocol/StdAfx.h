@@ -15,6 +15,7 @@
 
 // TODO: reference additional headers your program requires here
 #include <windows.h>
+#include <winsock2.h>
 #include <time.h>
 #include <tchar.h>
 
